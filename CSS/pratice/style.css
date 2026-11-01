@@ -1,0 +1,52 @@
+*{
+    color: white;
+}
+
+.contentbox{
+    height:100px;
+    width:100px;
+    border : 2px solid black;
+    display : inline-block;
+}
+
+#content{
+    height : 500px;
+}
+
+
+#navbar{
+    background-color:black;
+    height : 60px;
+}
+#logo{
+    background-color:#88bdcd;
+    font-size : 20px;
+}
+
+a{
+    margin-right:200px;
+     text-decoration : none;
+}
+
+button{
+    background-color:rgb(163, 129, 185);
+   
+}
+
+input{
+    background-color : white;
+    color : black;
+}
+
+/* footer{
+    background-color:rgb(206, 191, 190);
+    padding : 20px;
+} */
+
+footer {
+    background-color: #0f1111;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+}

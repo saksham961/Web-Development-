@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOX MODEL</title>
+    <style>
+        body {
+            background-color: #ff9abc;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        #title {
+            text-align: center;
+            color: hsl(280, 100%, 30%);
+        }
+
+        .notes {
+            background-color: rgba(255, 255, 255, 0.85);
+            border: 4px solid hsl(240, 100%, 50%);
+            border-radius: 15px;
+            padding: 20px 40px;
+            max-width: 800px;
+            margin: auto;
+            line-height: 1.8;
+        }
+
+        .notes > li {
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .notes li li {
+            font-weight: normal;
+            color: #1a237e;
+        }
+
+        code {
+            background-color: #eeeeee;
+            color: #c2185b;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: "Courier New", monospace;
+        }
+
+        pre {
+            background-color: #263238;
+            color: #ffffff;
+            padding: 12px 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            line-height: 1.4;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        .intro { color: hsl(0, 100%, 40%); }
+        .border { color: hsl(30, 100%, 35%); }
+        .size { color: hsl(120, 100%, 25%); }
+        .box { color: hsl(200, 100%, 30%); }
+        .pad { color: hsl(280, 80%, 35%); }
+        .mar { color: hsl(340, 80%, 40%); }
+        .uni { color: hsl(170, 100%, 25%); }
+        .rev { color: hsl(240, 70%, 40%); }
+    </style>
+</head>
+<body>
+    <h1 id="title"> Box Model</h1>
+
+    <ol class="notes">
+
+        <li class="intro">What this lecture covers
+            <ul>
+                <li>Borders, height and width, the box model, padding, margin, and the universal selector.</li>
+                <li>Internal CSS is used in the lecture. Later lectures move to external CSS.</li>
+            </ul>
+        </li>
+
+        <li class="border">Borders
+            <ul>
+                <li>A border needs three things: <b>style</b>, <b>width</b>, and <b>color</b>.
+                    <pre><code>h1 {
+  border-style: solid;
+  border-width: 2px;
+  border-color: brown;
+}</code></pre>
+                </li>
+                <li><b>Border styles</b>: <code>solid</code>, <code>dotted</code>, <code>dashed</code>, and more. Pick the one you like.</li>
+                <li><b>Shorthand notation</b>: write all values in one property (order: width, style, color).
+                    <pre><code>h1 {
+  border: 5px solid brown;
+}</code></pre>
+                </li>
+                <li><b>border-radius</b>: rounds the sharp corners. A bigger value gives rounder corners.
+                    <pre><code>h1 {
+  border-radius: 5px;
+}</code></pre>
+                    A very large value (like 50px) makes the box very round, and the text can look like it comes out of the box.
+                </li>
+                <li><b>Round only one corner</b>: use the corner properties.
+                    <pre><code>h1 {
+  border-top-left-radius: 5px;
+  /* also: border-top-right-radius,
+     border-bottom-left-radius,
+     border-bottom-right-radius */
+}</code></pre>
+                </li>
+                <li><b>Border on only one side</b>:
+                    <pre><code>h1 {
+  border-top: 5px solid yellow;
+  /* also: border-bottom, border-right, border-left */
+}</code></pre>
+                </li>
+                <li>In the lecture, <code>border: 3px solid black;</code> and <code>border-radius</code> were applied to the heading and all the paragraphs, so every box looked the same.</li>
+            </ul>
+        </li>
+
+        <li class="size">Height and Width
+            <ul>
+                <li>By default a block element takes the full width of the page (100%). You can set your own size.
+                    <pre><code>p {
+  width: 350px;
+}
+
+h1 {
+  width: 350px;
+  height: 200px;
+}</code></pre>
+                </li>
+                <li>Adjust the number until the box looks right (the lecture tried 500px, 300px, and then 350px).</li>
+                <li>You can set <code>width</code> and <code>height</code> separately for different elements.</li>
+                <li>Later lectures will compare <b>block</b> and <b>inline</b> elements.</li>
+            </ul>
+        </li>
+
+        <li class="box">The Box Model
+            <ul>
+                <li>The browser shows <b>every piece of content inside a rectangular box</b>. It does not matter if the content is text, an image, a logo, a graphic, an ad, or a button. There are no circular or triangular boxes.</li>
+                <li>Keep the box model in mind whenever you design or plan a layout with CSS.</li>
+                <li>Every box has <b>4 layers</b>, from the inside out:
+                    <ol>
+                        <li><b>Content</b>: the text, image, or other content itself.</li>
+                        <li><b>Padding</b>: the space between the content and the border (<b>inside</b> the border).</li>
+                        <li><b>Border</b>: the line around the padding and content.</li>
+                        <li><b>Margin</b>: the space outside the border, between this box and other boxes (<b>outside</b> the border).</li>
+                    </ol>
+                </li>
+                <li>Easy way to remember:
+                    <ul>
+                        <li>Gap <b>inside</b> the border = <b>padding</b></li>
+                        <li>Gap <b>outside</b> the border = <b>margin</b></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+
+        <li class="box">Box Model in DevTools
+            <ul>
+                <li>Right-click an element, choose <b>Inspect</b>, and look at the box model diagram in the Styles / Computed area.</li>
+                <li>When you hover over each layer, it is highlighted on the page with a color:
+                    <ul>
+                        <li>Blue = content (for example 350 x 110 px)</li>
+                        <li>Green = padding (for example 90px on all sides)</li>
+                        <li>Dark / black line = border (for example 3px)</li>
+                        <li>Orange = margin (for example 90px)</li>
+                    </ul>
+                </li>
+                <li>It also shows the exact values for each of the four sides, so you can check your work.</li>
+            </ul>
+        </li>
+
+        <li class="pad">Padding
+            <ul>
+                <li>Padding is the space between the <b>content</b> and the <b>border</b>. It can be 0.</li>
+                <li><code>padding: 10px;</code> adds space on all 4 sides. A bigger value gives more space (the lecture tried 10px, 50px, 90px).</li>
+                <li><b>One side at a time</b>:
+                    <pre><code>padding-left: 10px;
+padding-top: 20px;
+padding-right: 30px;
+padding-bottom: 40px;</code></pre>
+                </li>
+                <li><b>Four-value shorthand</b>: the order is <b>top, right, bottom, left</b> (clockwise).
+                    <pre><code>padding: 15px 25px 35px 45px;
+/*       top  right bottom left */</code></pre>
+                </li>
+                <li><b>Two-value shorthand</b>: the first value is top and bottom (vertical), the second is left and right (horizontal).
+                    <pre><code>padding: 20px 40px;
+/* 20px top and bottom, 40px left and right */</code></pre>
+                </li>
+                <li>Check every value with Inspect and the box model diagram.</li>
+            </ul>
+        </li>
+
+        <li class="mar">Margin
+            <ul>
+                <li>Margin is the space <b>outside</b> the border. It controls the gap between two boxes and how far a box is from the edge of the page.</li>
+                <li><code>margin: 50px;</code> adds space on all 4 sides.</li>
+                <li><b>One side at a time</b>:
+                    <pre><code>margin-top: 100px;
+margin-left: 20px;
+margin-right: 20px;
+margin-bottom: 20px;</code></pre>
+                </li>
+                <li>Example: <code>margin-top: 100px;</code> pushes the box down from the top. Nothing is added on the left or right.</li>
+                <li>To increase the gap between two boxes, increase the <b>margin</b>.</li>
+            </ul>
+        </li>
+
+        <li class="uni">Universal Selector and Best Practice
+            <ul>
+                <li>Browsers add a small <b>default margin</b> (for example on the left and top of the page). You did not write it.</li>
+                <li>Best practice: remove the defaults first, then add your own spacing where needed.</li>
+                <li>The <b>universal selector</b> is the star <code>*</code>. It selects <b>all elements</b> on the page.
+                    <pre><code>* {
+  margin: 0;
+  padding: 0;
+}</code></pre>
+                </li>
+                <li>After adding this, the gaps on the left, top, and between boxes disappear.</li>
+                <li>Selectors learned so far: element, ID, class, group, and now universal.</li>
+            </ul>
+        </li>
+
+        <li class="rev">Quick revision
+            <ul>
+                <li>Border = style + width + color. Shorthand: <code>border: 5px solid brown;</code></li>
+                <li><code>border-radius</code> rounds corners. You can round one corner or put a border on one side.</li>
+                <li><code>width</code> and <code>height</code> set the size of a box.</li>
+                <li>Box model layers: content, padding, border, margin.</li>
+                <li>Padding = inside the border. Margin = outside the border.</li>
+                <li>Shorthand order for four values: top, right, bottom, left. For two values: vertical, horizontal.</li>
+                <li><code>* { margin: 0; padding: 0; }</code> removes all default spacing.</li>
+                <li>Use Inspect to see the box model of any element.</li>
+            </ul>
+        </li>
+
+    </ol>
+</body>
+</html>

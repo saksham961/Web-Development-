@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FONT FAMILY Notes</title>
+    <style>
+        body {
+            background-color: #ff9abc;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        #title {
+            text-align: center;
+            color: hsl(280, 100%, 30%);
+        }
+
+        .notes {
+            background-color: rgba(255, 255, 255, 0.85);
+            border: 4px solid hsl(240, 100%, 50%);
+            border-radius: 15px;
+            padding: 20px 40px;
+            max-width: 800px;
+            margin: auto;
+            line-height: 1.8;
+        }
+
+        .notes > li {
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .notes li li {
+            font-weight: normal;
+            color: #1a237e;
+        }
+
+        code {
+            background-color: #eeeeee;
+            color: #c2185b;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: "Courier New", monospace;
+        }
+
+        pre {
+            background-color: #263238;
+            color: #ffffff;
+            padding: 12px 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            line-height: 1.4;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        .intro { color: hsl(0, 100%, 40%); }
+        .fonts { color: hsl(30, 100%, 35%); }
+        .gfonts { color: hsl(120, 100%, 25%); }
+        .colors { color: hsl(200, 100%, 30%); }
+        .dev { color: hsl(340, 80%, 40%); }
+        .rev { color: hsl(280, 80%, 35%); }
+    </style>
+</head>
+<body>
+    <h1 id="title"> Fonts, Colors and DevTools</h1>
+
+    <ol class="notes">
+
+        <li class="intro">What this lecture covers
+            <ul>
+                <li>Font properties: <code>font-style</code>, <code>font-size</code>, <code>font-family</code>, <code>font-weight</code>, <code>line-height</code>.</li>
+                <li>Using external fonts from Google Fonts.</li>
+                <li>Four ways to write colors: named, RGB/RGBA, hexadecimal, HSL.</li>
+                <li>A first look at the browser Developer Tools.</li>
+                <li>You do not need to memorize every property. Use the internet for syntax. You will remember them with practice.</li>
+            </ul>
+        </li>
+
+        <li class="fonts">CSS Font Properties
+            <ul>
+                <li><b>font-style</b>: changes the look of the text.
+                    <pre><code>p {
+  font-style: italic;
+}</code></pre>
+                </li>
+                <li><b>font-size</b>: makes the text bigger or smaller, usually in pixels.
+                    <pre><code>p {
+  font-size: 20px;
+}</code></pre>
+                </li>
+                <li>Why units? A number alone means nothing, like "speed is 20". It needs a unit (20 km/h, 5 km, 2 kg). In the same way, font size needs a unit, and <code>px</code> (pixel) is the common one.</li>
+                <li>A CSS pixel is 1/96 of an inch, which is about 0.26 mm. Other units (em, rem, %) come in later lectures.</li>
+                <li><b>font-family</b>: each font family draws every letter in its own style.
+                    <pre><code>p {
+  font-family: cursive;
+}</code></pre>
+                    Some families look almost the same as the default, so use an obvious one (like <code>cursive</code>) when testing.
+                </li>
+                <li><b>Fallback system</b>: you can list several families. If the first one is not available, the browser tries the next one, and so on.
+                    <pre><code>font-family: "Open Sans", Arial, sans-serif;</code></pre>
+                </li>
+                <li><b>Web safe fonts</b>: fonts that already exist in almost every browser or device.</li>
+                <li><b>font-weight</b>: how thick or dark the text is. Use numbers from 100 to 900.
+                    <ul>
+                        <li><code>100</code> = very light</li>
+                        <li><code>400</code> = normal</li>
+                        <li><code>900</code> = very bold</li>
+                    </ul>
+                </li>
+                <li><b>line-height</b>: the gap between two lines of text.
+                    <pre><code>p {
+  line-height: 30px;
+}</code></pre>
+                    A bigger value gives more gap, a smaller value gives less gap.
+                </li>
+            </ul>
+        </li>
+
+        <li class="gfonts">Using External (Google) Fonts
+            <ul>
+                <li>Use this when you want a font that is not already in the browser.</li>
+                <li>Steps:
+                    <ol>
+                        <li>Go to the Google Fonts website and pick a font you like.</li>
+                        <li>Click the <b>+</b> (select style) button.</li>
+                        <li>Copy the <code>&lt;link&gt;</code> tags and paste them inside the <code>&lt;head&gt;</code> of your HTML. This imports the font.</li>
+                        <li>Copy the <code>font-family</code> line Google gives you and use it in your CSS (internal or external).</li>
+                    </ol>
+                    <pre><code>&lt;link href="https://fonts.googleapis.com/css2?family=Roboto&amp;display=swap" rel="stylesheet"&gt;
+
+p {
+  font-family: "Roboto", sans-serif;
+}</code></pre>
+                </li>
+            </ul>
+        </li>
+
+        <li class="colors">CSS Colors
+            <ul>
+                <li>There are four main ways to add a color. In the lecture they were used on <code>background-color</code> and <code>color</code> (text color).</li>
+                <li><b>1. Named colors</b>: <code>yellow</code>, <code>brown</code>, <code>blue</code>.
+                    <pre><code>#first-para {
+  background-color: yellow;
+  color: brown;
+}</code></pre>
+                </li>
+                <li><b>2. RGB / RGBA</b>: Red, Green, Blue values from 0 to 255 (never above 255). <code>rgb(0, 0, 0)</code> is black.
+                    <ul>
+                        <li>Example of a light blue: <code>rgb(100, 109, 192)</code></li>
+                        <li><b>A = Alpha</b>: the transparency level of the color. <code>0</code> = fully transparent (no color visible), <code>1</code> = fully solid, and values in between are partly see-through.</li>
+                    </ul>
+                    <pre><code>background-color: rgb(100, 109, 192);
+background-color: rgba(0, 255, 0, 0.5);  /* half transparent green */</code></pre>
+                </li>
+                <li><b>3. Hexadecimal</b>: starts with <code>#</code>, then six digits.
+                    <ul>
+                        <li>First two = Red, middle two = Green, last two = Blue.</li>
+                        <li><code>#ffffff</code> = white. <code>#ff2323</code> = an orange-red shade.</li>
+                        <li>You can add two more digits at the end for opacity (alpha). A lower value makes the color lighter.</li>
+                    </ul>
+                    <pre><code>background-color: #ffffff;
+background-color: #ff2323;</code></pre>
+                </li>
+                <li><b>4. HSL</b>: Hue, Saturation, Lightness.
+                    <ul>
+                        <li><b>Hue</b>: a color wheel from 0 to 360. <code>0</code> = red, <code>120</code> = green, <code>240</code> = blue.</li>
+                        <li><b>Saturation</b>: the intensity of the color, 0% to 100%. 100% = full color, 0% = no color.</li>
+                        <li><b>Lightness</b>: how light the color is, 0% to 100%. 100% = fully light (looks white), 0% = fully dark.</li>
+                    </ul>
+                    <pre><code>background-color: hsl(0, 100%, 50%);    /* red */
+background-color: hsl(120, 100%, 50%);  /* green */</code></pre>
+                </li>
+                <li>Use a color picker (in the browser DevTools, VS Code, or Google) to create colors. It shows the hex, RGB, and HSL values for the same color, so you do not have to remember them.</li>
+                <li>In real projects, <b>RGB and hex are used the most</b>.</li>
+                <li>Homework: explore how the alpha value works in the HSL function (<code>hsla</code>).</li>
+            </ul>
+        </li>
+
+        <li class="rev">Revision
+            <ul>
+                <li>Fonts: <code>font-size</code>, <code>font-family</code> (with fallbacks and external fonts), <code>font-style</code>, <code>font-weight</code>, <code>line-height</code>.</li>
+                <li>Colors: named, RGB/RGBA, hex, HSL.</li>
+                <li>Alpha controls transparency.</li>
+            </ul>
+        </li>
+
+        <li class="dev">Developer Tools Overview
+            <ul>
+                <li>Right-click an element on the page and choose <b>Inspect</b>.</li>
+                <li><b>Elements tab</b>: shows your HTML code. Hover over a line to highlight that element on the page, or click an element on the page to see its code (with its id and content).</li>
+                <li><b>Styles panel</b>: shows the CSS properties applied to the selected element, for example <code>background-color: yellow</code> and <code>color: brown</code>.</li>
+                <li>You can click a value and change it to test things, such as changing yellow to green. You can also untick a property to turn it off.</li>
+                <li><b>Changes are temporary</b>. They only exist in your own browser. When you reload the page, everything goes back to normal. Other people never see your changes, so you can safely edit any website's text or colors for testing.</li>
+                <li><b>User agent stylesheet</b>: styles that the browser adds by default (like margin and display). You did not write them.</li>
+                <li>The <b>box model</b> diagram, <b>Console</b>, <b>Sources</b>, and <b>Network</b> tabs will be explained in later lectures (Console with JavaScript).</li>
+            </ul>
+        </li>
+
+    </ol>
+</body>
+</html>

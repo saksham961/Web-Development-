@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> BASIC NOTES OF CSS</title>
+    <style>
+        body {
+            background-color: #ff9abc;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        #title {
+            text-align: center;
+            color: hsl(280, 100%, 30%);
+        }
+
+        .notes {
+            background-color: rgba(255, 255, 255, 0.85);
+            border: 4px solid hsl(240, 100%, 50%);
+            border-radius: 15px;
+            padding: 20px 40px;
+            max-width: 800px;
+            margin: auto;
+            line-height: 1.8;
+        }
+
+        .notes > li {
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .notes li li {
+            font-weight: normal;
+            color: #1a237e;
+        }
+
+        code {
+            background-color: #eeeeee;
+            color: #c2185b;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: "Courier New", monospace;
+        }
+
+        pre {
+            background-color: #263238;
+            color: #ffffff;
+            padding: 12px 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            line-height: 1.4;
+            font-weight: normal;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        .what { color: hsl(0, 100%, 40%); }
+        .cascade { color: hsl(30, 100%, 35%); }
+        .ways { color: hsl(120, 100%, 25%); }
+        .priority { color: hsl(200, 100%, 30%); }
+        .sel { color: hsl(280, 80%, 35%); }
+        .rev { color: hsl(340, 80%, 40%); }
+    </style>
+</head>
+<body>
+    <h1 id="title"> BASIC NOTES OF CSS </h1>
+
+    <ol class="notes">
+
+        <li class="what">What is CSS?
+            <ul>
+                <li>CSS stands for <b>Cascading Style Sheets</b>.</li>
+                <li>HTML gives the page its structure (skeleton) and description. CSS controls how the page looks (appearance).</li>
+                <li>Use CSS to change colors, set the background color, center text, change font size, add borders, and so on.</li>
+                <li>Style sheet: a place where you write properties and give them values.
+                    <pre><code>background-color: red;   /* property: value */
+color: blue;
+border: 1px solid black;</code></pre>
+                </li>
+            </ul>
+        </li>
+
+        <li class="cascade">What does "Cascading" mean?
+            <ul>
+                <li>The same property can be set in more than one place. For example, the same paragraph may get background yellow, red, and blue.</li>
+                <li>The browser needs a rule to pick one, and that rule is the cascade.</li>
+                <li>Homework from the lecture: search Google for the factors the cascade depends on (for example importance, specificity, and order of the code).</li>
+            </ul>
+        </li>
+
+        <li class="ways">Three ways to add CSS
+            <ul>
+                <li><b>Inline CSS</b>: written inside the tag with the <code>style</code> attribute.
+                    <pre><code>&lt;p style="background-color: yellow;"&gt;Hello&lt;/p&gt;</code></pre>
+                    It is not good practice, because the code gets confusing as properties grow.
+                </li>
+                <li><b>Internal CSS</b>: a <code>&lt;style&gt;</code> tag inside the <code>&lt;head&gt;</code>.
+                    <pre><code>&lt;head&gt;
+  &lt;style&gt;
+    h1 {
+      color: green;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;</code></pre>
+                </li>
+                <li><b>External CSS</b>: a separate <code>.css</code> file. It takes two steps:
+                    <ol>
+                        <li>Create the CSS file (for example <code>style.css</code>).</li>
+                        <li>Link it to the HTML file inside the <code>&lt;head&gt;</code>.
+                            <pre><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+                        </li>
+                    </ol>
+                    This is the most used method because it keeps HTML and CSS separate (<b>separation of concerns</b>).
+                </li>
+            </ul>
+        </li>
+
+        <li class="ways">CSS syntax (internal and external)
+            <ul>
+                <li><b>Selector</b>: says which element to style (for example <code>h1</code>).</li>
+                <li><b>Curly brackets</b> <code>{ }</code>: everything inside them is the styling for that selector.</li>
+                <li><b>Property</b>: the left side (for example <code>color</code>).</li>
+                <li><b>Value</b>: the right side (for example <code>green</code>).</li>
+                <pre><code>selector {
+  property: value;
+}</code></pre>
+            </ul>
+        </li>
+
+        <li class="priority">Which CSS wins when there is a conflict?
+            <ul>
+                <li>Inline CSS beats internal and external CSS. In the lecture, inline yellow won over internal blue-violet and external aquamarine.</li>
+                <li>Internal vs external: the one written later in the code wins. Changing the order changes the winner.</li>
+                <li>If the same property is written twice in one place, the last one wins (red first, then aqua gives aqua).</li>
+                <li><code>!important</code> forces a value to win over everything else.
+                    <pre><code>p {
+  background-color: blueviolet !important;
+}</code></pre>
+                </li>
+            </ul>
+        </li>
+
+        <li class="sel">Selectors: ways to target HTML elements
+            <ul>
+                <li><b>Element selector</b>: use the tag name. It styles every element of that tag.
+                    <pre><code>p {
+  color: brown;
+}</code></pre>
+                    This styles all <code>&lt;p&gt;</code> tags. It does not style an <code>&lt;article&gt;</code>, because that is a different tag.
+                </li>
+                <li><b>ID selector</b>: use <code>#</code> before the id name. An id belongs to one unique element.
+                    <pre><code>#article1 {
+  background-color: green;
+}</code></pre>
+                </li>
+                <li><b>Class selector</b>: use <code>.</code> before the class name. Many elements can share one class.
+                    <pre><code>.para-class {
+  background-color: yellow;
+}</code></pre>
+                    You can set many properties in one rule.
+                </li>
+                <li><b>Group selector</b>: use a comma to style several selectors at once.
+                    <pre><code>p, article {
+  width: 500px;
+}</code></pre>
+                </li>
+                <li><b>Tag + class together</b>: <code>p.para-class</code> styles only <code>&lt;p&gt;</code> elements that have that class. An <code>&lt;article&gt;</code> with the same class is not affected.
+                    <pre><code>p.para-class {
+  text-align: center;
+}</code></pre>
+                </li>
+            </ul>
+        </li>
+
+        <li class="sel">Comments
+            <ul>
+                <li>In HTML: <code>&lt;!-- comment --&gt;</code></li>
+                <li>In CSS: <code>/* comment */</code></li>
+                <li>Shortcut: select the line and press <code>Ctrl + /</code>.</li>
+            </ul>
+        </li>
+
+        <li class="sel">Properties used in this lecture
+            <ul>
+                <li><code>background-color</code>: sets the background color.</li>
+                <li><code>color</code>: sets the text color.</li>
+                <li><code>border</code>: adds a border (for example <code>1px solid black</code>).</li>
+                <li><code>font-size</code>: sets the text size.</li>
+                <li><code>text-align: center;</code>: centers the text.</li>
+                <li><code>width</code>: sets the width (for example <code>500px</code>).</li>
+                <li>There are many more properties. You will learn them with practice.</li>
+            </ul>
+        </li>
+
+        <li class="rev">Quick revision
+            <ul>
+                <li>HTML = structure. CSS = appearance.</li>
+                <li>Three ways to add CSS: inline, internal, external.</li>
+                <li>Selectors: element, <code>#id</code>, <code>.class</code>, group with commas.</li>
+                <li>Inline beats internal and external. Later code beats earlier code. <code>!important</code> beats all.</li>
+                <li>Use external CSS in real projects.</li>
+            </ul>
+        </li>
+
+    </ol>
+</body>
+</html>
