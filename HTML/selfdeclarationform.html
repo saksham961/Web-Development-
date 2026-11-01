@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+</head>
+<body>
+    <form action="#" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Form</legend>
+
+            <label for="name">Enter your Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name ..." required>
+            <br><br>
+
+            <label for="email">Enter your Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email ..." required>
+            <br><br>
+
+            <label for="phone">Enter your Phone Number:</label> 
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number ..." required>
+            <br><br>
+
+            <label for="gender">Select your Gender:</label>
+            <select id="gender" name="gender">
+                <option value="">Select gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            <br><br>
+
+            <label for="dob">Enter your DOB:</label>
+            <input type="date" id="dob" name="dob">
+            <br><br>
+
+            <label for="country">Enter your Country:</label>
+            <input type="text" id="country" name="country" placeholder="Enter your country ..." required>
+            <br><br>
+
+            <label for="state">Enter your State:</label>
+            <input type="text" id="state" name="state" placeholder="Enter your state ..." required>
+            <br><br>
+
+            <label for="city">Enter your City:</label>
+            <input type="text" id="city" name="city" placeholder="Enter your city ..." required>
+            <br><br>
+            <label for="address">Enter your Address:</label>
+            <input type="text" id="address" name="address" placeholder="Enter your address ..." required>
+            <br><br>
+            <label for="hobbies">Enter your Hobbies:</label>
+            <input type="text" id="hobbies" name="hobbies" placeholder="Enter your hobbies ..." required>
+            <br><br>
+            <p>From which profession do you belong?</p>
+            <select id="profession" name="profession">
+                <option value="">Select profession</option>
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+                <option value="engineer">Engineer</option>
+                <option value="doctor">Doctor</option>
+                <option value="other">Other</option>
+            </select>
+            <br><br>
+            
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="4" cols="50" placeholder="Enter your message here ..."></textarea>
+            <br><br>
+
+            <label for="password">Create Password for your form:</label>
+            <input type="password" id="password" name="password" placeholder="Create a strong password ..." required>
+            <br><br>
+
+            <label for="fileselect1">Upload your photo:</label>
+            <input type="file" id="fileselect1" name="fileselect1" accept="image/*">
+            <br><br>
+
+            <label for="fileselect2">Upload your signature:</label>
+            <input type="file" id="fileselect2" name="fileselect2" accept="image/*">
+            <br><br>
+
+            <p>Read all the terms and conditions before submitting the form and click the checkbox to agree.</p>
+            <label for="terms">I agree to the terms and conditions:</label>
+            <input type="checkbox" id="terms" name="terms" required>
+            <br><br>
+
+            <input type="submit" value="Submit the form">
+        </fieldset>
+    </form>
+</body>
+</html>
