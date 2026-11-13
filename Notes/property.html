@@ -1,0 +1,275 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSS Position - Revision Notes</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font: 16px/1.7 Arial, sans-serif;
+    max-width: 850px;
+    margin: 30px auto;
+    padding: 25px;
+    color: #263238;
+    background: linear-gradient(135deg, #dbeafe, #fce7f3);
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    background: linear-gradient(90deg, #2563eb, #9333ea);
+    padding: 18px;
+    border-radius: 12px;
+}
+
+h2 {
+    color: #4338ca;
+    margin-top: 28px;
+    border-left: 5px solid #9333ea;
+    padding-left: 12px;
+}
+
+ul {
+    padding-left: 25px;
+}
+
+li {
+    margin: 5px 0;
+}
+
+code {
+    background: #ede9fe;
+    color: #7c3aed;
+    padding: 3px 7px;
+    border-radius: 5px;
+}
+
+pre {
+    background: #172554;
+    color: #bfdbfe;
+    padding: 15px;
+    border-radius: 10px;
+    overflow-x: auto;
+}
+
+.section {
+    padding: 12px 18px;
+    margin: 15px 0;
+    border-radius: 10px;
+}
+
+.static {
+    background: #dbeafe;
+    border-left: 5px solid #2563eb;
+}
+
+.relative {
+    background: #dcfce7;
+    border-left: 5px solid #16a34a;
+}
+
+.absolute {
+    background: #fce7f3;
+    border-left: 5px solid #db2777;
+}
+
+.fixed {
+    background: #fef3c7;
+    border-left: 5px solid #d97706;
+}
+
+.sticky {
+    background: #ede9fe;
+    border-left: 5px solid #7c3aed;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th {
+    background: #4338ca;
+    color: white;
+}
+
+td, th {
+    border: 1px solid #ddd6fe;
+    padding: 12px;
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background: #f5f3ff;
+}
+
+tr:nth-child(odd) {
+    background: #ffffff;
+}
+
+.remember {
+    background: linear-gradient(90deg, #fef3c7, #fed7aa);
+    padding: 18px;
+    border-radius: 12px;
+    margin-top: 25px;
+    border-left: 6px solid #f59e0b;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🌈 CSS Position: Revision Notes</h1>
+
+<h2>📌 What it does</h2>
+<ul>
+<li><code>position</code> decides how an element is placed on the page.</li>
+<li>Used with <code>top</code>, <code>left</code>, <code>right</code>, <code>bottom</code>.</li>
+</ul>
+
+<div class="section static">
+<h2>1. 🔵 Static (Default)</h2>
+<ul>
+<li>Normal flow.</li>
+<li>top/left/right/bottom do nothing.</li>
+</ul>
+</div>
+
+<div class="section relative">
+<h2>2. 🟢 Relative</h2>
+<ul>
+<li>Moves from its own normal position.</li>
+<li><b>Old space is kept.</b></li>
+<li>Used as an anchor for absolute children.</li>
+</ul>
+<pre><code>.box {
+  position: relative;
+  top: 100px;
+  left: 200px;
+}</code></pre>
+</div>
+
+<div class="section absolute">
+<h2>3. 💗 Absolute</h2>
+<ul>
+<li>Used for overlapping elements.</li>
+<li>Positioned relative to the closest positioned parent.</li>
+<li>Removed from normal flow, so old space is lost.</li>
+</ul>
+<pre><code>.parent {
+  position: relative;
+}
+
+.child {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}</code></pre>
+</div>
+
+<div class="section fixed">
+<h2>4. 🟠 Fixed</h2>
+<ul>
+<li>Stays at one spot on the screen while scrolling.</li>
+<li>Example: Chat button or contact button.</li>
+</ul>
+<pre><code>.btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}</code></pre>
+</div>
+
+<div class="section sticky">
+<h2>5. 🟣 Sticky</h2>
+<ul>
+<li>Normal at first, then sticks while scrolling.</li>
+<li>Needs an offset like <code>top: 0</code>.</li>
+<li>Sticks only within its scrolling container.</li>
+</ul>
+<pre><code>.title {
+  position: sticky;
+  top: 0;
+}</code></pre>
+</div>
+
+<h2>⚡ Fixed vs Sticky</h2>
+<ul>
+<li><b>Fixed:</b> Stays on the screen while scrolling.</li>
+<li><b>Sticky:</b> Stays within its scrolling container.</li>
+</ul>
+
+<h2>📊 Quick Comparison Table</h2>
+
+<table>
+<tr>
+<th>Value</th>
+<th>Relative To</th>
+<th>Old Space Kept?</th>
+</tr>
+
+<tr>
+<td>Static</td>
+<td>Normal flow</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td>Relative</td>
+<td>Its own position</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Absolute</td>
+<td>Closest positioned ancestor</td>
+<td>No</td>
+</tr>
+
+<tr>
+<td>Fixed</td>
+<td>Viewport (normally)</td>
+<td>No</td>
+</tr>
+
+<tr>
+<td>Sticky</td>
+<td>Scroll container</td>
+<td>Yes</td>
+</tr>
+</table>
+
+<div class="remember">
+<b>💡 Remember:</b>
+<ul>
+<li>Absolute = Overlap</li>
+<li>Fixed = Stays on screen</li>
+<li>Sticky = Sticks while scrolling</li>
+<li>Relative = Moves but keeps its space</li>
+</ul>
+</div>
+
+</div>
+
+</body>
+</html>
+```
